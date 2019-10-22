@@ -1,0 +1,5 @@
+library(testthat)
+context("Benchmark of Local Linear Regression Function")
+library(microbenchmark)
+source("llr_functions.R")
+microbenchmark::microbenchmark(llr(x = x, y = y, z = z, omega = 2))

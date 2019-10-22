@@ -25,3 +25,38 @@ make_predictor_matrix = function(x) {
   n = length(x)
   return(cbind(rep(1, n), x))
 }
+
+# --- example 1 --- #
+# get the data
+data(french_fries, package = 'reshape2')
+french_fries = na.omit(french_fries)
+
+# input data
+x = french_fries$potato
+y = french_fries$buttery
+
+# space along which to smooth
+z = seq(0, 15, length.out = 100)
+
+# run smoothing
+fits = llr(z = z, x = x, y = y, omega = 2)
+
+# plot the data and the smoother
+plot(x, y)
+lines(z, fits, col = 'red')
+
+# --- example 2 --- #
+# noisy sine wave
+x = runif(1000, -2 * pi, 2 * pi)
+y = sin(x) + rnorm(length(x))
+
+# space along which to smooth
+z = seq(-2 * pi, 2 * pi, length.out = 100)
+
+# run smoothing
+fits = llr(z = z, x = x, y = y, omega = pi / 3)
+
+# plot the data and the smoother
+plot(x, y)
+lines(z, fits, col = 'red')
+
