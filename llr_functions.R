@@ -45,18 +45,4 @@ fits = llr(z = z, x = x, y = y, omega = 2)
 plot(x, y)
 lines(z, fits, col = 'red')
 
-# --- example 2 --- #
-# noisy sine wave
-x = runif(1000, -2 * pi, 2 * pi)
-y = sin(x) + rnorm(length(x))
-
-# space along which to smooth
-z = seq(-2 * pi, 2 * pi, length.out = 100)
-
-# run smoothing
-fits = llr(z = z, x = x, y = y, omega = pi / 3)
-
-# plot the data and the smoother
-plot(x, y)
-lines(z, fits, col = 'red')
 
